@@ -296,9 +296,16 @@
         <span class="dl-go">ダウンロード →</span>
       </a>
     </div>
+    <div class="note warn">
+      <span class="label">大事：ファイルの「開き方」</span>
+      ダウンロードしたHTMLファイルを<strong>ダブルクリックすると、「完成した見た目」が表示されます</strong>。それはそれで正しいのですが、中身を書き換えるには「見た目」ではなく<strong>「中のコード（文字）」を開く</strong>必要があります。<br><br>
+      コードを開くには、ファイルを<strong>右クリック → 「プログラムから開く」→「メモ帳」</strong>を選びます（Macの場合は「テキストエディット」）。すると、書き換えられる中身が表示されます。<br><br>
+      <strong>このマニュアルで配布するファイルは、すべてこの方法（右クリック→メモ帳）で開いて</strong>、決められた場所を書き換えてください。
+    </div>
+
     <div class="note">
-      <span class="label">ダウンロードの使い方</span>
-      ファイルは、パソコンにダウンロードして、テキストエディタ（メモ帳など）で開けます。各STEPの案内にそって決められた場所を書き換えたら、GitHubにアップして使います。
+      <span class="label">ダウンロードの使い方（全体の流れ）</span>
+      ①ファイルをダウンロード　→　②右クリック→メモ帳で開く　→　③決められた場所を書き換える　→　④GitHubにアップして公開する。この流れは、どのファイルも同じです。
     </div>
   </section>
 
@@ -802,7 +809,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
 
       <div class="step">
         <h4>フォームにURLを貼る</h4>
-        <p><code class="inline">form.html</code> をテキストエディタで開き、上のほうにある次の行を探します。</p>
+        <p><code class="inline">form.html</code> を<strong>右クリック→メモ帳で開き</strong>（ダブルクリックだと見た目が開くので注意）、上のほうにある次の行を探します。</p>
         <pre>const GAS_URL = "ここにGASのURLを貼る";</pre>
         <p>この <code class="inline">ここにGASのURLを貼る</code> の部分を、さっきコピーしたURLに<strong>置き換え</strong>ます。前後の <code class="inline">"</code>（ダブルクォート）は消さないよう注意してください。</p>
         <pre>const GAS_URL = "https://script.google.com/macros/s/……/exec";</pre>
@@ -931,7 +938,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
     </div>
 
     <h3>書き換えるのは、ここだけ</h3>
-    <p>お渡しするファイル（<code class="inline">dashboard-template.html</code>）を、テキストエディタで開きます。書き換える場所には、すべて<strong>「ここに自分の〇〇を貼る」</strong>と書いてあるので、そこを探して差し替えるだけです。</p>
+    <p>お渡しするファイル（<code class="inline">dashboard-template.html</code>）を、<strong>右クリック→メモ帳で開きます</strong>（ダブルクリックだと見た目が開くので注意）。書き換える場所には、すべて<strong>「ここに自分の〇〇を貼る」</strong>と書いてあるので、そこを探して差し替えるだけです。</p>
 
     <h4>① いちばん大事：GAS_URL（必ず書き換え）</h4>
     <p>ファイルの下のほうにある、次の行を探します。</p>
