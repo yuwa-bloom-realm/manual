@@ -140,10 +140,14 @@
   .tbl th{font-family:var(--sans);font-weight:500;color:var(--gold);font-size:.78rem;letter-spacing:.08em;border-bottom:1.5px solid var(--gold-soft)}
   .tbl td strong{color:var(--ink)}
 
-  /* checklist */
+  /* checklist（タップでチェックできる） */
   .check{list-style:none;margin:22px 0}
-  .check li{position:relative;padding:12px 0 12px 38px;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink-soft)}
-  .check li::before{content:"";position:absolute;left:4px;top:14px;width:18px;height:18px;border:1.5px solid var(--gold-soft);border-radius:3px}
+  .check li{position:relative;padding:12px 0 12px 38px;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink-soft);cursor:pointer;transition:color .2s ease;-webkit-tap-highlight-color:transparent;user-select:none}
+  .check li::before{content:"";position:absolute;left:4px;top:14px;width:18px;height:18px;border:1.5px solid var(--gold-soft);border-radius:3px;background:transparent;transition:background .2s ease,border-color .2s ease}
+  .check li::after{content:"";position:absolute;left:9px;top:16px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform .2s ease;opacity:0}
+  .check li.done{color:var(--gold)}
+  .check li.done::before{background:var(--gold);border-color:var(--gold)}
+  .check li.done::after{transform:rotate(45deg) scale(1);opacity:1}
 
   /* footer */
   footer{text-align:center;padding:70px 0 40px}
@@ -1009,7 +1013,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
     </div>
 
     <h3>公開前の最終チェックリスト</h3>
-    <p>下のすべてにチェックが付いたら、安心して公開できます。</p>
+    <p>下のすべてにチェックが付いたら、安心して公開できます。<strong>各項目をタップすると、チェックが付きます。</strong>確認しながら、ひとつずつ潰していきましょう。</p>
     <ul class="check">
       <li>LP・診断・フォームが、スマホでもPCでも崩れずに表示される</li>
       <li>すべてのボタンが、正しい次のページへつながっている</li>
@@ -1029,7 +1033,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
   <div class="divider">
     <span class="eyebrow">Part 2</span>
     <h2>希望者のみ</h2>
-    <p>有料商品を売りたくなったとき、作業を自動化したくなったときに読む章です。<br>本編の仕組みだけでも、説明会は問題なく動きます。</p>
+    <p>有料商品を売りたくなったとき、作業を自動化したくなったときに読む章です。<br>本編の仕組みだけでも、集客の仕組みは問題なく動きます。</p>
   </div>
 
   <!-- ========== 9. 決済 ========== -->
@@ -1151,6 +1155,12 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
       }
     });
   })();
+
+  document.querySelectorAll('.check li').forEach(function(li){
+    li.addEventListener('click', function(){
+      li.classList.toggle('done');
+    });
+  });
 
   document.querySelectorAll('.copy-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
