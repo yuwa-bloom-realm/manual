@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>お申し込み｜追いかけない集客のつくりかた（無料オンライン説明会）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light only;
+    --bg:#FBFAF7;
+    --bg-alt:#F3EFE8;
+    --ink:#2A2724;
+    --ink-soft:#514B42;
+    --gold:#8C7A5B;
+    --line:#E3DDD2;
+    --serif:'Shippori Mincho',serif;
+    --sans:'Noto Sans JP',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#FBFAF7 !important;min-height:100%}
+  body{
+    background:#FBFAF7 !important;
+    color:var(--ink);
+    min-height:100vh;
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:2;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+    padding:0 0 80px;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 28px}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.7;letter-spacing:.02em}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;color:var(--gold);font-weight:500;text-transform:uppercase}
+
+  /* ---- header ---- */
+  .head{text-align:center;padding:70px 0 44px}
+  .head .eyebrow{display:block;margin-bottom:20px}
+  .head h1{font-size:clamp(1.5rem,5.4vw,2rem);margin-bottom:24px}
+  .head p{font-size:.96rem;color:var(--ink-soft);line-height:2}
+
+  /* ---- form ---- */
+  form{max-width:520px;margin:0 auto}
+  .field{margin-bottom:34px}
+  .field.sub{margin-left:0;padding-left:20px;border-left:2px solid var(--line)}
+  label.q{display:block;font-family:var(--sans);font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:6px;line-height:1.7}
+  .req{color:var(--gold);font-size:.78rem;font-weight:500;margin-left:8px;letter-spacing:.06em}
+  .hint{display:block;font-size:.82rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.8;font-weight:300}
+
+  input[type=text],input[type=email],textarea{
+    width:100%;font-family:var(--sans);font-size:1rem;font-weight:300;color:#2A2724 !important;
+    background:#fff !important;border:1px solid var(--line);border-radius:2px;
+    padding:15px 16px;line-height:1.7;transition:border-color .3s ease;
+    -webkit-appearance:none;appearance:none;
+  }
+  input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  textarea{resize:vertical;min-height:110px}
+  ::placeholder{color:#B6AE9F}
+
+  /* radio */
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{position:relative;display:flex;align-items:center;gap:12px;
+    background:#fff !important;border:1px solid var(--line);border-radius:2px;
+    padding:14px 18px;cursor:pointer;transition:border-color .3s ease,background .3s ease}
+  .opt:hover{border-color:var(--gold)}
+  .opt input{position:absolute;opacity:0;width:0;height:0}
+  .opt .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #C4BBA9;flex-shrink:0;transition:.25s ease;position:relative}
+  .opt .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .2s ease}
+  .opt input:checked ~ .dot{border-color:var(--gold)}
+  .opt input:checked ~ .dot::after{transform:scale(1)}
+  .opt input:checked ~ .txt{color:var(--ink)}
+  .opt.on{border-color:var(--gold);background:#FCFBF8}
+  .opt .txt{font-size:.96rem;color:var(--ink-soft);font-weight:300}
+
+  /* conditional blocks */
+  .branch{display:none;margin-top:16px;animation:fade .4s ease}
+  .branch.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* submit */
+  .submit-wrap{text-align:center;margin-top:12px}
+  button.cta{display:inline-block;font-family:var(--sans);font-weight:400;letter-spacing:.14em;font-size:1rem;
+    color:#FBFAF7 !important;background:#2A2724 !important;border:none;cursor:pointer;
+    padding:22px 64px;border-radius:2px;transition:background .4s ease}
+  button.cta:hover{background:var(--gold)}
+  button.cta:disabled{opacity:.5;cursor:default}
+  .cta-note{margin-top:20px;font-size:.8rem;color:var(--ink-soft);letter-spacing:.04em;line-height:1.9}
+  .err{color:#B4553F;font-size:.82rem;margin-top:8px;display:none}
+  .err.show{display:block}
+
+  /* done screen */
+  .done{display:none;text-align:center;padding:80px 0}
+  .done.show{display:block}
+  .done h2{font-size:1.5rem;margin-bottom:24px}
+  .done p{font-size:.96rem;color:var(--ink-soft);line-height:2.1}
+  .done .mark{font-family:var(--serif);font-size:2.4rem;color:var(--gold);margin-bottom:24px;line-height:1}
+
+  @media(max-width:560px){
+    .head{padding:54px 0 36px}
+    button.cta{padding:20px 48px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="head">
+    <span class="eyebrow">ENTRY</span>
+    <h1>説明会のお申し込み</h1>
+    <p>下記をご記入のうえ、お送りください。<br>折り返し、ご案内をメールでお送りします。</p>
+  </div>
+
+  <form id="entryForm" novalidate>
+
+    <!-- 名前 -->
+    <div class="field">
+      <label class="q" for="name">お名前<span class="req">必須</span></label>
+      <span class="hint">ご案内を確実にお届けするため、本名でのご記入をお願いします。</span>
+      <input type="text" id="name" name="name" placeholder="例：桜庭 ゆわ" autocomplete="name">
+      <div class="err" data-for="name">お名前をご記入ください。</div>
+    </div>
+
+    <!-- メール -->
+    <div class="field">
+      <label class="q" for="email">メールアドレス<span class="req">必須</span></label>
+      <span class="hint">ご案内はこちらのアドレスへお送りします。</span>
+      <input type="email" id="email" name="email" placeholder="例：yuwa@example.com" autocomplete="email">
+      <div class="err" data-for="email">メールアドレスをご確認ください。</div>
+    </div>
+
+    <!-- 仕事 -->
+    <div class="field">
+      <label class="q" for="job">今のお仕事<span class="req">必須</span></label>
+      <span class="hint">占い・カウンセリング・鑑定など、いまの活動を自由にお書きください。</span>
+      <textarea id="job" name="job" placeholder="例：対面とオンラインでタロット鑑定をしています。"></textarea>
+      <div class="err" data-for="job">ご記入ください。</div>
+    </div>
+
+    <!-- 悩み -->
+    <div class="field">
+      <label class="q" for="worry">今いちばん悩んでいること<span class="req">必須</span></label>
+      <span class="hint">集客・単価・リピート・自信など、どんなことでもかまいません。</span>
+      <textarea id="worry" name="worry" placeholder="例：発信は続けているのに、なかなか申し込みにつながりません。"></textarea>
+      <div class="err" data-for="worry">ご記入ください。</div>
+    </div>
+
+    <!-- 活動歴 -->
+    <div class="field">
+      <label class="q" for="career">活動してどのくらいになりますか<span class="req">必須</span></label>
+      <span class="hint">おおよそでかまいません。</span>
+      <input type="text" id="career" name="career" placeholder="例：2年ほど／これから始めるところ">
+      <div class="err" data-for="career">ご記入ください。</div>
+    </div>
+
+    <!-- 自動化：使ったことがあるか -->
+    <div class="field">
+      <label class="q">自動化のシステムを使ったことはありますか<span class="req">必須</span></label>
+      <span class="hint">ステップメール・LINE配信・自動集客の仕組みなどを指します。</span>
+      <div class="opts" data-radio="usedBefore">
+        <label class="opt"><input type="radio" name="usedBefore" value="ある"><span class="dot"></span><span class="txt">ある</span></label>
+        <label class="opt"><input type="radio" name="usedBefore" value="ない"><span class="dot"></span><span class="txt">ない</span></label>
+      </div>
+      <div class="err" data-for="usedBefore">どちらかをお選びください。</div>
+    </div>
+
+    <!-- 分岐：あるの人 → 今も使ってるか -->
+    <div class="branch" id="branch-used">
+      <div class="field">
+        <label class="q">いまも使っていますか<span class="req">必須</span></label>
+        <div class="opts" data-radio="usingNow">
+          <label class="opt"><input type="radio" name="usingNow" value="使っている"><span class="dot"></span><span class="txt">使っている</span></label>
+          <label class="opt"><input type="radio" name="usingNow" value="やめた"><span class="dot"></span><span class="txt">やめた</span></label>
+        </div>
+        <div class="err" data-for="usingNow">どちらかをお選びください。</div>
+      </div>
+
+      <!-- 分岐：使っている → なぜ今日見ようと -->
+      <div class="branch" id="branch-using">
+        <div class="field sub">
+          <label class="q" for="reasonUsing">いま使っているなかで、今日この説明会を見てみようと思われたのはなぜですか<span class="req">必須</span></label>
+          <textarea id="reasonUsing" name="reasonUsing" placeholder="率直なお気持ちで大丈夫です。"></textarea>
+          <div class="err" data-for="reasonUsing">ご記入ください。</div>
+        </div>
+      </div>
+
+      <!-- 分岐：やめた → なぜやめたか -->
+      <div class="branch" id="branch-quit">
+        <div class="field sub">
+          <label class="q" for="reasonQuit">差し支えなければ、使わなくなった理由を教えてください<span class="req">必須</span></label>
+          <textarea id="reasonQuit" name="reasonQuit" placeholder="うまくいかなかった点など、率直にどうぞ。"></textarea>
+          <div class="err" data-for="reasonQuit">ご記入ください。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 知りたいこと -->
+    <div class="field">
+      <label class="q" for="want">この説明会で知りたいこと</label>
+      <span class="hint">任意です。あれば、当日できるだけお答えします。</span>
+      <textarea id="want" name="want" placeholder="例：自分の場合でも仕組みが作れるのか知りたいです。"></textarea>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="submit" class="cta" id="submitBtn">送信する</button>
+      <div class="err" data-for="__form" style="margin-top:16px">送信に失敗しました。時間をおいて、もう一度お試しください。</div>
+      <p class="cta-note">ご記入いただいた内容は、説明会のご案内以外には使用しません。</p>
+    </div>
+
+  </form>
+
+  <!-- 完了画面 -->
+  <div class="done" id="done">
+    <div class="mark">✽</div>
+    <h2>お申し込みありがとうございます</h2>
+    <p>ご案内のメールを追ってお送りします。<br>「見てみたい」と思っていただけたこと、うれしく思います。</p>
+  </div>
+
+</div>
+
+<script>
+  /* ▼▼▼ ここにGASのウェブアプリURLを貼る ▼▼▼ */
+  const GAS_URL = "ここにGASのURLを貼る";
+  /* ▲▲▲ */
+
+  const form = document.getElementById('entryForm');
+  const btn  = document.getElementById('submitBtn');
+
+  // ラジオ選択のハイライト + 分岐制御
+  function refreshRadioStyles(){
+    document.querySelectorAll('.opt').forEach(o=>{
+      const input=o.querySelector('input');
+      o.classList.toggle('on', input.checked);
+    });
+  }
+
+  document.querySelectorAll('input[name="usedBefore"]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      const show = r.value==='ある' && r.checked;
+      document.getElementById('branch-used').classList.toggle('show',show);
+      if(!show){
+        // 「ない」に切り替えたら下の分岐をリセット
+        document.querySelectorAll('input[name="usingNow"]').forEach(x=>x.checked=false);
+        document.getElementById('branch-using').classList.remove('show');
+        document.getElementById('branch-quit').classList.remove('show');
+      }
+      refreshRadioStyles();
+    });
+  });
+
+  document.querySelectorAll('input[name="usingNow"]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      document.getElementById('branch-using').classList.toggle('show', r.value==='使っている' && r.checked);
+      document.getElementById('branch-quit').classList.toggle('show', r.value==='やめた' && r.checked);
+      refreshRadioStyles();
+    });
+  });
+
+  // エラー表示ヘルパ
+  function showErr(name,on){
+    const el=document.querySelector('.err[data-for="'+name+'"]');
+    if(el) el.classList.toggle('show',on);
+  }
+  function clearErrs(){document.querySelectorAll('.err').forEach(e=>e.classList.remove('show'));}
+
+  function validate(){
+    clearErrs();
+    let ok=true;
+    const val=id=>(document.getElementById(id)?.value||'').trim();
+    const radio=name=>document.querySelector('input[name="'+name+'"]:checked')?.value||'';
+
+    if(!val('name')){showErr('name',true);ok=false;}
+    const email=val('email');
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('email',true);ok=false;}
+    if(!val('job')){showErr('job',true);ok=false;}
+    if(!val('worry')){showErr('worry',true);ok=false;}
+    if(!val('career')){showErr('career',true);ok=false;}
+
+    const used=radio('usedBefore');
+    if(!used){showErr('usedBefore',true);ok=false;}
+    if(used==='ある'){
+      const using=radio('usingNow');
+      if(!using){showErr('usingNow',true);ok=false;}
+      if(using==='使っている' && !val('reasonUsing')){showErr('reasonUsing',true);ok=false;}
+      if(using==='やめた' && !val('reasonQuit')){showErr('reasonQuit',true);ok=false;}
+    }
+    return ok;
+  }
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    if(!validate()){
+      // 最初のエラーへスクロール
+      const first=document.querySelector('.err.show');
+      if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+
+    const data={
+      name:document.getElementById('name').value.trim(),
+      email:document.getElementById('email').value.trim(),
+      job:document.getElementById('job').value.trim(),
+      worry:document.getElementById('worry').value.trim(),
+      career:document.getElementById('career').value.trim(),
+      usedBefore:(document.querySelector('input[name="usedBefore"]:checked')||{}).value||'',
+      usingNow:(document.querySelector('input[name="usingNow"]:checked')||{}).value||'',
+      reasonUsing:document.getElementById('reasonUsing').value.trim(),
+      reasonQuit:document.getElementById('reasonQuit').value.trim(),
+      want:document.getElementById('want').value.trim()
+    };
+
+    btn.disabled=true;
+    btn.textContent='送信中…';
+
+    try{
+      await fetch(GAS_URL,{
+        method:'POST',
+        mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(data)
+      });
+      // no-corsではレスポンスが読めないため、送信できた前提で完了画面へ
+      form.style.display='none';
+      document.querySelector('.head').style.display='none';
+      const done=document.getElementById('done');
+      done.classList.add('show');
+      window.scrollTo({top:0,behavior:'smooth'});
+    }catch(err){
+      showErr('__form',true);
+      btn.disabled=false;
+      btn.textContent='送信する';
+    }
+  });
+</script>
+
+</body>
+</html>

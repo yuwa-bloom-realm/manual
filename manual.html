@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>追いかけない集客 構築マニュアル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light only;
+    --bg:#FBFAF7;
+    --bg-alt:#F3EFE8;
+    --ink:#2A2724;
+    --ink-soft:#514B42;
+    --gold:#8C7A5B;
+    --gold-soft:#B6A480;
+    --line:#E3DDD2;
+    --paper:#FFFFFF;
+    --serif:'Shippori Mincho',serif;
+    --sans:'Noto Sans JP',sans-serif;
+    --code-bg:#2A2724;
+    --code-ink:#EDE7DC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#FBFAF7 !important;min-height:100%}
+  body{
+    background:#FBFAF7 !important;
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:2;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+    min-height:100vh;
+    padding-bottom:100px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 30px}
+
+  /* download cards */
+  .dl-grid{display:grid;gap:14px;margin:24px 0}
+  .dl-card{display:flex;align-items:center;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:18px 20px;text-decoration:none;transition:border-color .3s ease,transform .2s ease}
+  .dl-card:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .dl-card .dl-ic{font-size:1.5rem;flex-shrink:0;width:44px;height:44px;background:var(--bg-alt);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .dl-card .dl-body{flex:1;min-width:0}
+  .dl-card .dl-name{font-family:var(--sans);font-weight:500;font-size:.98rem;color:var(--ink);margin-bottom:3px}
+  .dl-card .dl-desc{font-size:.82rem;color:var(--ink-soft);line-height:1.6}
+  .dl-card .dl-go{font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;font-weight:500;color:var(--gold);white-space:nowrap;flex-shrink:0}
+  .dl-card.disabled{opacity:.55;pointer-events:none}
+
+  /* prompt box with copy button */
+  .prompt-box{position:relative;background:var(--code-bg);border-radius:4px;margin:24px 0;overflow:hidden}
+  .prompt-box .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.08)}
+  .prompt-box .bar .name{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;color:var(--gold-soft);font-weight:500}
+  .prompt-box .copy-btn{font-family:var(--sans);font-size:.74rem;letter-spacing:.08em;font-weight:500;color:var(--code-ink);background:rgba(255,255,255,.1);border:none;border-radius:20px;padding:7px 18px;cursor:pointer;transition:background .3s ease,color .3s ease;white-space:nowrap}
+  .prompt-box .copy-btn:hover{background:var(--gold);color:#fff}
+  .prompt-box .copy-btn.done{background:#93A578;color:#fff}
+  .prompt-box .prompt-text{padding:22px 22px 26px;color:var(--code-ink);font-family:var(--sans);font-size:.86rem;line-height:1.95;white-space:pre-wrap;word-break:break-word;font-weight:300}
+  .prompt-box .prompt-text .fill{color:#E8C98A;font-weight:400}
+
+  /* fill-in guide table */
+  .fill-guide{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:8px 4px;margin:20px 0}
+
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.6;letter-spacing:.02em;color:var(--ink)}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;color:var(--gold);font-weight:500;text-transform:uppercase}
+
+  /* ===== cover ===== */
+  .cover{text-align:center;padding:90px 0 70px;border-bottom:1px solid var(--line)}
+  .cover .eyebrow{display:block;margin-bottom:26px}
+  .cover h1{font-size:clamp(1.8rem,6vw,2.6rem);margin-bottom:28px;line-height:1.5}
+  .cover .lead{font-size:1rem;color:var(--ink-soft);line-height:2.1;max-width:520px;margin:0 auto}
+  .cover .meta{margin-top:40px;font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;color:var(--gold)}
+
+  /* ===== table of contents ===== */
+  .toc{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:40px 38px;margin:60px 0}
+  .toc h2{font-size:1.1rem;letter-spacing:.16em;margin-bottom:26px;font-family:var(--sans);font-weight:500;color:var(--gold)}
+  .toc ol{list-style:none;counter-reset:toc}
+  .toc li{counter-increment:toc;padding:11px 0;border-bottom:1px dotted var(--line);font-size:.96rem}
+  .toc li:last-child{border-bottom:none}
+  .toc li a{color:var(--ink);text-decoration:none;display:flex;align-items:baseline;gap:14px;transition:color .3s ease}
+  .toc li a:hover{color:var(--gold)}
+  .toc li a::before{content:counter(toc,decimal-leading-zero);font-family:var(--sans);font-size:.78rem;color:var(--gold-soft);letter-spacing:.1em;flex-shrink:0;width:24px}
+  .toc .part{margin:22px 0 6px;font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;color:var(--gold-soft)}
+
+  /* ===== section ===== */
+  section{padding:70px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  .sec-num{font-family:var(--sans);font-size:.74rem;letter-spacing:.24em;color:var(--gold);font-weight:500;margin-bottom:14px;display:block}
+  section h2{font-size:clamp(1.5rem,4.6vw,1.95rem);margin-bottom:30px;line-height:1.5}
+  section h3{font-size:1.2rem;margin:44px 0 18px;padding-left:16px;border-left:3px solid var(--gold-soft)}
+  section h4{font-size:1.02rem;margin:28px 0 12px;color:var(--ink-soft);font-family:var(--sans);font-weight:700}
+  p{font-size:.98rem;color:var(--ink-soft);line-height:2.15;margin-bottom:18px}
+  strong{color:var(--ink);font-weight:500}
+  a{color:var(--gold)}
+
+  /* lists */
+  ul.dot,ol.num{margin:0 0 22px;padding-left:0;list-style:none}
+  ul.dot li,ol.num li{position:relative;padding-left:26px;margin-bottom:12px;font-size:.96rem;color:var(--ink-soft);line-height:1.95}
+  ul.dot li::before{content:"";position:absolute;left:6px;top:14px;width:5px;height:5px;border-radius:50%;background:var(--gold-soft)}
+  ol.num{counter-reset:n}
+  ol.num li{counter-increment:n;padding-left:34px}
+  ol.num li::before{content:counter(n);position:absolute;left:0;top:0;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--paper);background:var(--gold);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1}
+
+  /* numbered steps (big) */
+  .steps{counter-reset:step;margin:26px 0}
+  .step{position:relative;padding:0 0 30px 56px;margin-bottom:8px}
+  .step:not(:last-child)::after{content:"";position:absolute;left:17px;top:38px;bottom:0;width:1px;background:var(--line)}
+  .step::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);border:1.5px solid var(--gold);color:var(--gold);font-family:var(--sans);font-size:.9rem;font-weight:500;display:flex;align-items:center;justify-content:center}
+  .step h4{margin:6px 0 8px;font-size:1rem}
+  .step p{margin-bottom:8px;font-size:.94rem}
+  .step:last-child{padding-bottom:0}
+
+  /* callout boxes */
+  .note{background:var(--bg-alt);border-radius:2px;padding:22px 26px;margin:24px 0;font-size:.92rem;color:var(--ink-soft);line-height:2}
+  .note .label{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;font-weight:700;color:var(--gold);margin-bottom:8px}
+  .warn{background:#FBF3EE;border-left:3px solid #C8896B}
+  .warn .label{color:#B4553F}
+  .tip{background:#F1F4EE;border-left:3px solid #93A578}
+  .tip .label{color:#6E7F52}
+
+  /* option / 希望者のみ tag */
+  .optional-badge{display:inline-block;font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;font-weight:500;color:var(--gold);background:var(--bg-alt);border:1px solid var(--line);padding:4px 12px;border-radius:20px;margin-left:12px;vertical-align:middle}
+
+  /* part divider */
+  .divider{text-align:center;padding:80px 0 20px}
+  .divider .eyebrow{display:block;margin-bottom:18px}
+  .divider h2{font-size:clamp(1.4rem,4.4vw,1.8rem);border:none;padding:0;margin:0 auto 16px;max-width:560px;line-height:1.6}
+  .divider p{max-width:500px;margin:0 auto;font-size:.94rem}
+
+  /* code block */
+  pre{background:var(--code-bg);color:var(--code-ink);border-radius:3px;padding:20px 22px;margin:20px 0;overflow-x:auto;font-family:'SFMono-Regular',Consolas,'Courier New',monospace;font-size:.82rem;line-height:1.7;-webkit-overflow-scrolling:touch}
+  code.inline{background:var(--bg-alt);color:var(--gold);font-family:'SFMono-Regular',Consolas,monospace;font-size:.86em;padding:2px 7px;border-radius:3px;word-break:break-all}
+
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;margin:24px 0;font-size:.9rem}
+  .tbl th,.tbl td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);color:var(--ink-soft);line-height:1.7;vertical-align:top}
+  .tbl th{font-family:var(--sans);font-weight:500;color:var(--gold);font-size:.78rem;letter-spacing:.08em;border-bottom:1.5px solid var(--gold-soft)}
+  .tbl td strong{color:var(--ink)}
+
+  /* checklist */
+  .check{list-style:none;margin:22px 0}
+  .check li{position:relative;padding:12px 0 12px 38px;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink-soft)}
+  .check li::before{content:"";position:absolute;left:4px;top:14px;width:18px;height:18px;border:1.5px solid var(--gold-soft);border-radius:3px}
+
+  /* footer */
+  footer{text-align:center;padding:70px 0 40px}
+  footer .sig{font-family:var(--serif);font-size:1.2rem;color:var(--gold);margin-bottom:10px}
+  footer .copy{font-size:.72rem;color:var(--ink-soft);letter-spacing:.06em}
+
+  @media(max-width:560px){
+    .wrap{padding:0 22px}
+    section{padding:54px 0}
+    .cover{padding:64px 0 52px}
+    .toc{padding:30px 24px}
+    .step{padding-left:48px}
+    pre{font-size:.76rem;padding:16px 16px}
+  }
+  @media print{
+    body{padding:0}
+    section{page-break-inside:avoid}
+    pre{white-space:pre-wrap;word-break:break-all}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ========== COVER ========== -->
+  <div class="cover">
+    <span class="eyebrow">Construction Manual</span>
+    <h1>追いかけない集客<br>構築マニュアル</h1>
+    <p class="lead">診断・フォーム・ステップメール・予約。<br>「必要な人が、自分から来てくれる」仕組みを、<br>ひとつずつ、自分の手でつくるための手順書です。</p>
+    <div class="meta">yuwa Bloom Realm</div>
+  </div>
+
+  <!-- ========== TOC ========== -->
+  <nav class="toc">
+    <h2>もくじ</h2>
+    <div class="part">はじめに</div>
+    <ol>
+      <li><a href="#intro">この仕組みで、何が起きるのか</a></li>
+      <li><a href="#prepare">準備するもの</a></li>
+    </ol>
+    <div class="part">本編｜ここまでで、仕組みは動きます</div>
+    <ol start="3">
+      <li><a href="#step1">STEP1　GitHub Pages を用意する</a></li>
+      <li><a href="#step2">STEP2　止まりポイント診断を設置する</a></li>
+      <li><a href="#step3">STEP3　申込フォームを設置する</a></li>
+      <li><a href="#step4">STEP4　7日間ステップメールを組む</a></li>
+      <li><a href="#step5">STEP5　ダッシュボードで数字を見る</a></li>
+      <li><a href="#step6">STEP6　全部つなげて公開する</a></li>
+    </ol>
+    <div class="part">希望者のみ｜有料商品を売る・自動化する</div>
+    <ol start="9">
+      <li><a href="#pay">決済を用意する</a></li>
+      <li><a href="#zapier">Zapier で自動連携する</a></li>
+      <li><a href="#analytics">アクセス解析を入れる</a></li>
+    </ol>
+    <div class="part">巻末</div>
+    <ol start="12">
+      <li><a href="#trouble">困ったとき</a></li>
+    </ol>
+  </nav>
+
+  <!-- ========== 1. INTRO ========== -->
+  <section id="intro">
+    <span class="sec-num">01 ── はじめに</span>
+    <h2>この仕組みで、何が起きるのか</h2>
+    <p>このマニュアルで作るのは、<strong>「追いかけない集客」</strong>の仕組みです。売り込まなくても、あなたを本当に必要としている人が、自分から手を挙げて来てくれる。その流れを、道具を組み合わせて作っていきます。</p>
+    <p>全体の流れは、こうです。</p>
+
+    <div class="note">
+      <span class="label">ぜんたいの地図</span>
+      興味を持った人が「診断」を受ける　→　結果を見るために「メールアドレス」を残してくれる　→　7日間の「ステップメール」で少しずつ信頼が育つ　→　「もっと知りたい」人だけが個別相談を「予約」する　→　あなたは、来てくれた人とだけ、じっくり話す。
+    </div>
+
+    <p>大事なのは、<strong>あなたが誰かを追いかける場面が、どこにもない</strong>ということです。仕組みが、そっと届けてくれる。あなたは、来てくれた人を迎えるだけ。</p>
+
+    <div class="note tip">
+      <span class="label">このマニュアルの使い方</span>
+      「本編（STEP1〜6）」まで進めば、無料説明会の仕組みは完成して、実際に動きます。その後の「希望者のみ」の章は、有料商品を売ったり、作業を自動化したくなったときに読めば大丈夫。最初は飛ばしてかまいません。
+    </div>
+  </section>
+
+  <!-- ========== 2. PREPARE ========== -->
+  <section id="prepare">
+    <span class="sec-num">02 ── はじめに</span>
+    <h2>準備するもの</h2>
+    <p>最初にそろえる道具です。<strong>本編で使うものは、すべて無料の範囲で始められます。</strong>「希望者のみ」のものは、必要になってからで大丈夫です。</p>
+
+    <h3>作るための相棒（AI）</h3>
+    <table class="tbl">
+      <tr><th>名前</th><th>役割</th></tr>
+      <tr><td><strong>Claude</strong></td><td>コードを書く・文章を作る・設計を一緒に考える</td></tr>
+      <tr><td><strong>ChatGPT</strong></td><td>アイデア出し・文章づくりの相棒として併用</td></tr>
+    </table>
+
+    <h3>データの土台（Google・無料）</h3>
+    <table class="tbl">
+      <tr><th>名前</th><th>役割</th></tr>
+      <tr><td><strong>Google アカウント</strong></td><td>下の2つを使うための入口</td></tr>
+      <tr><td><strong>Google スプレッドシート</strong></td><td>診断の回答・申込の内容をためておく場所</td></tr>
+      <tr><td><strong>Google Apps Script（GAS）</strong></td><td>フォームの内容を自動でスプレッドシートに書き込む仕組み。スプレッドシートに最初から付いています</td></tr>
+    </table>
+
+    <h3>公開・配信・予約</h3>
+    <table class="tbl">
+      <tr><th>名前</th><th>役割</th><th>費用</th></tr>
+      <tr><td><strong>GitHub</strong></td><td>LP・診断・フォームをインターネットに公開する場所（GitHub Pages）</td><td>無料</td></tr>
+      <tr><td><strong>Brevo</strong></td><td>7日間ステップメールを自動で配信する</td><td>無料枠あり</td></tr>
+      <tr><td><strong>TimeRex</strong></td><td>個別相談の予約を受け付ける</td><td>無料枠あり</td></tr>
+    </table>
+
+    <h3>あとで使う（希望者のみ）<span class="optional-badge">希望者のみ</span></h3>
+    <table class="tbl">
+      <tr><th>名前</th><th>役割</th></tr>
+      <tr><td><strong>決済サービス</strong>（Square / Stripe / PayPal）</td><td>有料商品を売るとき、代金を受け取る</td></tr>
+      <tr><td><strong>Zapier</strong></td><td>予約や決済の情報を、自動でつなげる</td></tr>
+      <tr><td><strong>Google Analytics</strong></td><td>サイトに何人来たか、どこを見たかを調べる</td></tr>
+    </table>
+
+    <div class="note warn">
+      <span class="label">先に作っておくと安心</span>
+      Google アカウントと GitHub アカウントは、STEP1に入る前に作っておくとスムーズです。どちらもメールアドレスがあれば無料で作れます。
+    </div>
+
+    <h3>ファイルをダウンロードする</h3>
+    <p>この仕組みで使うファイルは、下からまとめてダウンロードできます。<strong>先に手元に保存しておく</strong>と、各STEPでスムーズに進められます。（診断は、STEP2でプロンプトから作るので、ここには含まれません。）</p>
+    <div class="dl-grid">
+      <a class="dl-card" id="dl-form" href="#" download>
+        <span class="dl-ic">📝</span>
+        <span class="dl-body">
+          <span class="dl-name">申込フォーム（form.html）</span>
+          <span class="dl-desc">説明会の申し込みを受け付けるフォーム（STEP3で使用）</span>
+        </span>
+        <span class="dl-go">ダウンロード →</span>
+      </a>
+      <a class="dl-card" id="dl-gas" href="#" download>
+        <span class="dl-ic">⚙️</span>
+        <span class="dl-body">
+          <span class="dl-name">フォーム用プログラム（gas_code.gs）</span>
+          <span class="dl-desc">入力内容をスプレッドシートに記録する仕組み（STEP3で使用）</span>
+        </span>
+        <span class="dl-go">ダウンロード →</span>
+      </a>
+      <a class="dl-card" id="dl-dash" href="#" download>
+        <span class="dl-ic">📊</span>
+        <span class="dl-body">
+          <span class="dl-name">ダッシュボード（dashboard-template.html）</span>
+          <span class="dl-desc">診断・登録・予約の数字をまとめて見る画面（STEP5で使用）</span>
+        </span>
+        <span class="dl-go">ダウンロード →</span>
+      </a>
+    </div>
+    <div class="note">
+      <span class="label">ダウンロードの使い方</span>
+      ファイルは、パソコンにダウンロードして、テキストエディタ（メモ帳など）で開けます。各STEPの案内にそって決められた場所を書き換えたら、GitHubにアップして使います。
+    </div>
+  </section>
+
+  <!-- ===== PART: 本編 divider ===== -->
+  <div class="divider">
+    <span class="eyebrow">Part 1</span>
+    <h2>本編</h2>
+    <p>ここから STEP1〜6 を順番に進めます。<br>すべて終えると、無料説明会の仕組みが動きはじめます。</p>
+  </div>
+
+  <!-- ========== STEP1 ========== -->
+  <section id="step1">
+    <span class="sec-num">03 ── 本編</span>
+    <h2>STEP1　GitHub Pages を用意する</h2>
+    <p>まずは、作ったページ（LP・診断・フォーム）を<strong>インターネット上に公開する「場所」</strong>を用意します。GitHub Pages を使うと、無料で、自分専用のアドレスでページを公開できます。一度用意すれば、あとはファイルを置くだけで、どんどん公開できるようになります。</p>
+
+    <h3>用意するもの</h3>
+    <ul class="dot">
+      <li><strong>GitHub のアカウント</strong>（無料。メールアドレスがあれば作れます）</li>
+    </ul>
+
+    <h3>手順</h3>
+    <div class="steps">
+
+      <div class="step">
+        <h4>GitHub に登録する</h4>
+        <p><a href="https://github.com">github.com</a> にアクセスして、アカウントを作ります。メールアドレス・パスワード・ユーザー名を決めるだけです。<strong>ユーザー名は、あとで公開アドレスの一部になります</strong>（例：ユーザー名が <code class="inline">yuwa-bloom-realm</code> なら、公開アドレスは <code class="inline">yuwa-bloom-realm.github.io</code> になります）。お仕事で使う名前にしておくと、きれいです。</p>
+      </div>
+
+      <div class="step">
+        <h4>リポジトリ（ファイルの入れ物）を作る</h4>
+        <p>ログインしたら、右上の「＋」から <strong>「New repository」</strong> を選びます。リポジトリとは、ファイルをまとめて置いておく「箱」のことです。</p>
+        <p>名前は <strong><code class="inline">ユーザー名.github.io</code></strong> の形で付けます。たとえばユーザー名が <code class="inline">yuwa-bloom-realm</code> なら、リポジトリ名も <code class="inline">yuwa-bloom-realm.github.io</code> にします。</p>
+        <div class="note tip">
+          <span class="label">なぜこの名前？</span>
+          この名前で作ると、GitHub が「これは公開用のサイトだな」と判断して、<strong>アドレスがそのまま <code class="inline">ユーザー名.github.io</code> になります</strong>。覚えやすく、きれいなアドレスになります。
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>「Public（公開）」を選んで作成</h4>
+        <p>作成のとき、<strong>「Public」</strong> を選びます（無料でGitHub Pagesを使うために必要です）。「Add a README file」にチェックを入れておくと、空でもすぐ作れます。最後に「Create repository」を押します。</p>
+      </div>
+
+      <div class="step">
+        <h4>ファイルをアップロードする</h4>
+        <p>作ったリポジトリの画面で、<strong>「Add file」→「Upload files」</strong> を選びます。ここに、作った <code class="inline">index.html</code>（LP）や <code class="inline">form.html</code>（フォーム）などを、ドラッグして置きます。置いたら下の <strong>「Commit changes」</strong> を押すと、保存されます。</p>
+        <div class="note">
+          <span class="label">ファイル名のヒント</span>
+          トップページにしたいファイルは <strong><code class="inline">index.html</code></strong> という名前にします。この名前のファイルが、アドレスを開いたときに最初に表示されます。
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>Pages を有効にする</h4>
+        <p>リポジトリの上のメニューから <strong>「Settings」→ 左の「Pages」</strong> を開きます。「Branch」の欄で <strong>「main」</strong> を選び、「Save」を押します。これで公開の設定は完了です。</p>
+      </div>
+
+      <div class="step">
+        <h4>公開されたか確認する</h4>
+        <p>1〜2分ほど待ってから、ブラウザで <code class="inline">https://ユーザー名.github.io</code> を開いてみます。置いたページが表示されれば成功です。</p>
+        <div class="note warn">
+          <span class="label">すぐ出ないことがあります</span>
+          公開されるまで、数分かかることがあります。開いてみて真っ白でも、少し待ってからもう一度開いてみてください。
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note tip">
+      <span class="label">一度作れば、あとはラク</span>
+      この場所は、一度作れば使い続けられます。診断もフォームも、新しいページを足したくなったら、STEP1-4の「Upload files」でファイルを置くだけ。公開の設定をやり直す必要はありません。
+    </div>
+  </section>
+
+  <!-- ========== STEP2 ========== -->
+  <section id="step2">
+    <span class="sec-num">04 ── 本編</span>
+    <h2>STEP2　止まりポイント診断を設置する</h2>
+    <p>興味を持った人が最初に触れる<strong>「診断」</strong>を用意します。診断は、お仕事によって内容が変わります。カウンセラーなら心の整え方、占い師なら鑑定の切り口——<strong>あなたの商売に合わせた診断を、あなた自身の言葉で作る</strong>のがいちばん効きます。</p>
+    <p>そこでこのSTEPでは、完成品を渡すのではなく、<strong>「あなた専用の診断を、AIに作ってもらうための指示文（プロンプト）」</strong>をお渡しします。下のプロンプトをコピーして、少し書き換えて、Claudeに貼るだけ。あなただけの診断ができあがります。</p>
+
+    <div class="note tip">
+      <span class="label">なぜ診断だけ「作り方」なの？</span>
+      フォームやダッシュボードは、誰が使っても中身が同じでいいので<strong>完成品をそのままお渡し</strong>します。でも診断は、あなたのお客さん・あなたの言葉でないと響きません。だから診断だけは、<strong>あなた専用に作れる「型」</strong>をお渡しします。
+    </div>
+
+    <h3>診断づくりは、2つのステップで</h3>
+    <p>診断は、次の2段階で作ります。それぞれ得意なAIが違うので、使い分けます。</p>
+    <ol class="num">
+      <li><strong>【ChatGPTで】中身と言葉を作る</strong>　── あなたの活動・お客様・届けたい未来をヒアリングしてもらいながら、診断のテーマ・タイプ・結果の文章・7日間メール・個別相談の案内まで、まるごと設計してもらいます。</li>
+      <li><strong>【Claudeで】動く診断ページ（HTML）にする</strong>　── ①でできあがった中身を渡して、実際に使える診断ページの形にしてもらいます。</li>
+    </ol>
+    <div class="note tip">
+      <span class="label">なぜ使い分けるの？</span>
+      「あなたの言葉や想いを引き出す対話」はChatGPT、「きっちり動くページを作る」はClaudeが得意です。それぞれの得意を活かすと、いちばんラクに、いちばん良いものができます。
+    </div>
+
+    <h3>ステップ①　ChatGPTで、診断の中身を作る</h3>
+    <p>下の「コピー」ボタンを押して、<strong>ChatGPT</strong>に貼り付けてください。貼るだけで、ChatGPTのほうから質問を始めてくれます。<strong>その質問に答えていくだけ</strong>で、あなた専用の診断ファネルができあがります。書き換える必要はありません。</p>
+
+    <div class="prompt-box">
+      <div class="bar">
+        <span class="name">① 診断ファネル設計プロンプト（ChatGPT用）</span>
+        <button class="copy-btn" data-copy="p-funnel">コピー</button>
+      </div>
+      <div class="prompt-text" id="p-funnel"># 個別相談につなげる「オリジナル診断ファネル」作成プロンプト
+
+あなたは、占い師・カウンセラー・セラピストなど、対人支援サービスのための「診断を入口に、メール登録・継続フォロー・個別相談へつなげる集客ファネル設計」の専門家です。
+
+これから私の活動・得意分野・お客様・提供サービスについてヒアリングを行い、私専用のオリジナル診断ファネルを設計してください。
+
+---
+
+# この診断ファネルの最終目的
+
+この診断の目的は、単に「診断を楽しんでもらうこと」ではありません。
+
+最終的な目的は、
+見込み客に自分の悩みや現在地へ気づいてもらい、メール登録後の継続フォローを通じて信頼関係を作り、最終的に個別相談へ自然につなげることです。
+
+基本導線は以下です。
+SNS・ホームページ・広告など → 無料診断 → メールアドレス登録 → 診断結果 → 7日間のフォローメール → 個別相談
+
+また、診断結果を見た時点で「すぐ相談したい」と思った人がいる場合は、7日間のメールを待たず、
+診断結果 → 個別相談
+へ直接進める導線も設計してください。
+
+診断そのものを完成させることがゴールではありません。
+診断から個別相談まで、一つの流れとして設計してください。
+
+---
+
+# STEP1｜まず私についてヒアリングしてください
+
+いきなり診断を作らず、まず私へ質問してください。
+一度に大量の質問を並べず、答えやすいように数問ずつ聞いてください。
+回答内容によって必要な追加質問もしてください。
+
+## ① 私の活動について
+・どんな活動をしていますか？
+・占い師、カウンセラー、セラピスト、コーチなど、どのような立場ですか？
+・得意分野は何ですか？
+・特に相談されることが多いテーマは何ですか？
+・自分自身の経験で、今の活動につながっているものはありますか？
+・独自の考え方・メソッド・鑑定方法・セッション方法などはありますか？
+・同じ分野の人と比べて、自分ならではの強みは何だと思いますか？
+・相談者からよく褒められるところはありますか？
+
+## ② 来てほしいお客様について
+・どんな人に来てほしいですか？
+・年齢・性別など、想定している人がいれば教えてください。
+・その人は今、何に悩んでいますか？
+・本人が自覚している悩みは何ですか？
+・本人はまだ気づいていないけれど、その奥にありそうな悩みは何だと思いますか？
+・その人が普段よく言いそうな言葉はありますか？
+・夜ひとりになった時、何を考えていそうですか？
+・これまでどんなことを試してきた人ですか？
+・なぜ今まで解決できなかったと思いますか？
+・その人が相談へ行くことをためらう理由は何だと思いますか？
+
+## ③ お客様が欲しい未来について
+・その人は最終的にどうなりたいですか？
+・どんな気持ちで毎日を過ごせるようになってほしいですか？
+・朝起きた時、どんな気持ちになっていてほしいですか？
+・人間関係・恋愛・仕事・お金・家族などは、どう変化してほしいですか？
+・悩みが軽くなったら、今までできなかった何ができるようになりますか？
+・あなたのサービスを受けた後、どんな言葉を言ってもらえたら理想ですか？
+
+「幸せになる」「自信を持つ」などの抽象的な表現だけで終わらず、生活や感情が想像できるところまで確認してください。
+
+## ④ 提供しているサービスについて
+・診断後につなげたい個別相談では何をしますか？
+・個別相談は何分ですか？
+・無料ですか？有料ですか？
+・個別相談を受けることで、相談者は何が分かりますか？
+・個別相談の後に継続サービスはありますか？
+・継続サービスがある場合、その内容・期間・価格帯を教えてください。
+・最終的にどのサービスへつなげたいですか？
+・個別相談ではどこまで提供し、その先の継続サービスでは何を提供しますか？
+
+## ⑤ 診断について
+・どんなテーマの診断を作りたいですか？
+・すでに診断名の案はありますか？
+・どんな人に「これ私かも」と思ってほしいですか？
+・診断を受けた人に、まず何へ気づいてほしいですか？
+・タイプ診断にしたいですか？
+・タイプ分け以外でも構いませんか？
+・世界観は、やさしい・親しみやすい・専門的・神秘的・和風・かわいい・高級感など、どんな雰囲気にしたいですか？
+・占い・スピリチュアル要素を入れたいですか？
+・心理学的な要素を入れたいですか？
+・絶対に使いたくない表現や避けたい雰囲気はありますか？
+
+---
+
+# STEP2｜最適な診断形式を設計してください
+
+ヒアリング終了後、すぐに質問を作らず、まず診断全体の設計を提示してください。
+
+## 1. 診断の目的
+この診断によって、相談者が何に気づくのか／なぜその気づきが個別相談につながるのかを説明してください。
+
+## 2. 診断タイトル
+タイトル案を5つ出してください。
+難しい専門用語ではなく、「これ私かも」「ちょっとやってみたい」「結果が知りたい」と思えるものを優先してください。
+
+## 3. 診断方法
+私のサービスに最も合う診断形式を選んでください。
+例：タイプ診断／複数軸診断／スコア診断／現在地診断／段階診断／バランス診断／複合タイプ診断
+無理にタイプ診断にはしないでください。
+
+## 4. 診断で見る項目
+診断で分析する項目を3〜7個程度設定してください。
+私のお客様とサービスに合わせて独自に設計してください。
+
+## 5. 質問数
+質問数は固定しないでください。この診断に必要な数を判断してください。
+その際、推奨質問数／その数にする理由／想定回答時間を教えてください。
+回答者が疲れて離脱するほど長くしないでください。
+
+---
+
+# STEP3｜診断質問を作成してください
+
+設計した診断目的を満たすために必要な質問だけ作ってください。
+「私は自信がありません」のような直接的すぎる質問を避けてください。
+
+なるべく、日常での行動／感情／人との関わり／何かを選ぶ時／問題が起きた時／誰かに何かを言われた時／不安になった時／未来を考えた時など、具体的な場面から答えられる質問にしてください。
+
+回答者自身が「これ私やってる」「言われてみればそうかも」と気づけるものにしてください。
+回答は3〜5択程度を基本にしてください。
+選択肢は、「正解」「不正解」が分かりすぎないようにしてください。
+
+---
+
+# STEP4｜判定ロジックを作ってください
+
+Web診断やGoogleスプレッドシートなどへ実装できるように、各質問について、質問番号／選択肢／加点される項目／点数／関連するタイプや傾向を表形式で整理してください。
+必要な場合は、1位＋2位など、複数の傾向を組み合わせて結果を出してください。
+また、同点になった場合の判定方法も決めてください。
+
+---
+
+# STEP5｜診断直後に見せる内容を作ってください
+
+診断後、すぐにすべてを見せるのではなく、回答者が「詳しい結果を知りたい」と思える簡易結果を設計してください。
+例：最も強く出た傾向／今の状態を表す短いメッセージ／「あなたには○○という傾向がありそうです」／続きを知りたくなる一言
+ただし、不安を煽ってメール登録させるような表現は禁止です。
+
+---
+
+# STEP6｜メール登録導線を作ってください
+
+詳しい診断結果を受け取るためのメール登録ページに表示する文章を作ってください。
+メール登録することで何を受け取れるのかを明確にしてください。
+例：詳しい診断結果／自分の強み／つまずきやすいポイント／今後意識するとよいこと／7日間のメール など。
+「登録しないと不幸になる」「今すぐ登録しなければ損」など、不必要に不安を煽る表現は使わないでください。
+
+---
+
+# STEP7｜詳しい診断結果を作ってください
+
+メール登録後に見せる詳しい診断結果を作成してください。以下を含めてください。
+① 最初の一言：読んだ瞬間「これ私かも」と思える短い文章。
+② 今の状態：現在どんな状態にいる可能性があるのか。
+③ すでに持っている強み：問題点ばかり指摘せず、これまで頑張ってきたことや、すでに持っている力も伝えてください。
+④ つまずきやすいポイント：責める表現にはしないでください。
+⑤ なぜこうなっている可能性があるのか：原因を断定せず「こういう可能性があります」という範囲で。
+⑥ 本当は望んでいるかもしれない未来：感情・生活・人間関係などが想像できるように描いてください。
+⑦ ただし、ここから先は人によって違う：経験・環境・人間関係・大切にしていることによって理由は違うことを伝え、「あなたの場合はどうなのか」を知る方法として個別相談を案内できる状態にしてください。
+
+---
+
+# STEP8｜診断結果ページから個別相談への導線を作ってください
+
+診断結果を読んで「今すぐ相談したい」と思った人のために、個別相談への案内文を作ってください。
+押し売りはしないでください。
+個別相談では、何をするのか／何が分かるのか／どんな人におすすめなのかを具体的に伝えてください。
+「もっと自分の場合を知りたい」と思った人が自然に申し込める文章にしてください。
+
+---
+
+# STEP9｜7日間のフォローメールを設計してください
+
+メール登録者へ送る7日間のフォローメールを作成してください。
+この7日間の目的は、売り込み続けることではありません。
+読者が「この人は私のことを分かってくれそう」「もう少し自分のことを知りたい」「一度相談してみようかな」と思えるように、共感／気づき／理解／小さな希望／信頼を積み重ねてください。
+7日間すべて同じ内容にせず、流れを作ってください。
+
+基本構成の例：
+1日目 診断結果の補足・「まずこれを知ってほしい」
+2日目 よくある悩み・「あなただけではありません」
+3日目 なぜ同じことを繰り返してしまうのか
+4日目 実はすでに持っている強み
+5日目 変わり始める人が最初に気づくこと
+6日目 一人で考える場合と、誰かと整理する場合の違い
+7日目 ここまで読んでくれた人へ／個別相談の案内
+
+これは一例です。私のサービス・お客様・診断テーマに合わせて最適な7日間へ変更してください。
+必要であれば、7日目以外にも個別相談への案内を入れて構いません。ただし毎日強く勧誘することは避けてください。
+
+---
+
+# STEP10｜7日間のメール本文を作成してください
+
+各メールについて、件名／冒頭／本文／最後の一言／必要な場合の個別相談CTAまで作ってください。
+文章は、専門家が上から教えるような口調ではなく、「あなたのことを理解し、一緒に考える人」として書いてください。
+
+---
+
+# STEP11｜個別相談の申込みページ文章を作ってください
+
+個別相談について、どんな人のためのものか／どんな悩みを扱うのか／相談すると何が分かるのか／何を一緒に整理するのか／相談後どんな状態を目指すのか／時間／料金／実施方法／申込み方法を整理してください。
+不安を煽ったり、「今申し込まないと変われない」などの表現は使わないでください。
+
+---
+
+# STEP12｜運営者用カルテを設計してください
+
+回答者本人には見せない、サービス提供者用の分析結果も作ってください。以下を含めてください。
+1位の傾向／2位の傾向／強く出ている項目／本人が表面上悩んでいそうなこと／その奥にありそうな課題／本人がすでに持っている強み／個別相談で確認したいこと／個別相談で使える深掘り質問／本人が望んでいそうな未来／継続サービスを案内する場合に確認すべきこと
+診断回答だけから本人を断定しないでください。必ず「可能性があります」「個別相談で確認してください」という仮説として扱ってください。
+
+---
+
+# STEP13｜最後にファネル全体を一覧化してください
+
+集客 → 診断 → 簡易結果 → メール登録 → 詳細結果 → 7日間メール → 個別相談 までを一枚で理解できるように整理してください。
+さらに、各段階について、目的／相手にしてほしい行動／表示する内容／次の導線を表にしてください。
+
+---
+
+# 最重要ルール
+
+この診断ファネルでは、診断で全部教えないこと。
+しかし、わざと情報を隠して不安を煽ることもしないこと。
+
+診断では「今の自分に気づく」ところまで。
+7日間のメールでは「理解が深まり、変われる可能性を感じる」ところまで。
+個別相談では「一般論ではなく、あなたの場合はどうなのか」を一緒に整理します。
+この役割を混同しないでください。
+
+また、医学的診断・精神疾患の判定・治療効果を示す診断は作らないでください。
+心理状態・過去・性格などを回答のみから断定しないでください。
+
+---
+
+では、いきなり診断を作らず、まず私の活動・得意分野・お客様についてヒアリングを始めてください。</div>
+    </div>
+
+    <div class="note tip">
+      <span class="label">ChatGPTが質問してくるので、答えるだけ</span>
+      このプロンプトは、貼るとChatGPTのほうから「どんな活動をしていますか？」と聞いてきます。<strong>あなたはそれに答えていくだけ</strong>。タロットなのか脳科学なのか、どんな人の役に立ちたいのか——あなたの中にある答えを、ChatGPTが引き出して、診断の形にまとめてくれます。
+    </div>
+
+    <h3>ステップ②　Claudeで、診断ページ（HTML）を作る</h3>
+    <p>ステップ①でできあがった<strong>タイプ・質問・結果の文章</strong>を、下のプロンプトと一緒に<strong>Claude</strong>に貼り付けてください。<span style="color:var(--gold)">オレンジ色の部分</span>を、ChatGPTで作った内容に差し替えます。</p>
+
+    <div class="prompt-box">
+      <div class="bar">
+        <span class="name">② 診断ページ作成プロンプト（Claude用）</span>
+        <button class="copy-btn" data-copy="p-shindan">コピー</button>
+      </div>
+      <div class="prompt-text" id="p-shindan">あなたは、Webの診断コンテンツを作る専門家です。
+以下の条件で、1ファイルで完結するHTMLの診断ページを作ってください。
+
+【診断のテーマ】
+<span class="fill">（例：占い・カウンセリングを仕事にする人の「集客の止まりポイント」がわかる診断）</span>
+
+【全体の雰囲気・世界観】
+・受け取る人を絶対に責めない、やさしい言葉づかい
+・「あなたが悪いのではなく、まだ整える場所が見えていなかっただけ」という空気
+・<span class="fill">（例：落ち着いたベージュと金色。上品で、静かで、あたたかい印象）</span>
+
+【タイプ】
+次の<span class="fill">4</span>タイプに分類します。それぞれに「今つまずいている理由」と「次に整えるポイント」を用意してください。
+1. <span class="fill">タイプ名：　　　／　理由：　　　／　整えるポイント：　　　</span>
+2. <span class="fill">タイプ名：　　　／　理由：　　　／　整えるポイント：　　　</span>
+3. <span class="fill">タイプ名：　　　／　理由：　　　／　整えるポイント：　　　</span>
+4. <span class="fill">タイプ名：　　　／　理由：　　　／　整えるポイント：　　　</span>
+
+【質問】
+・全<span class="fill">5</span>問。それぞれ選択肢はA・B・C・Dの4つ。
+・Aを選ぶとタイプ1、Bはタイプ2、Cはタイプ3、Dはタイプ4に対応するように作ってください。
+・いちばん多く選ばれたタイプを診断結果にします。
+・質問の内容は、テーマに沿ってあなたが考えて提案してください。
+
+【結果ページ】
+・診断結果（タイプ名・理由・整えるポイント）を表示します。
+・ただし結果を表示する“直前”に、「お名前」と「メールアドレス」を入力してもらう画面を必ず入れてください。入力して送信すると、結果が表示される流れにします。
+・結果ページのいちばん下に、次のボタンを置いてください：<span class="fill">（例：「くわしい内容をメールで受け取る」）</span>
+
+【技術的な条件】
+・HTML・CSS・JavaScriptを1つのファイルにまとめてください。
+・スマートフォンでもPCでも、きれいに表示されるようにしてください。
+・入力された名前とメールアドレスは、あとでGoogleスプレッドシートに送れるよう、送信先URL（GAS_URL）を差し替えられる形にしておいてください。
+
+まず、タイプと質問の案を出してください。私がOKしたら、HTMLを作ってください。</div>
+    </div>
+
+    <div class="note">
+      <span class="label">使い方のコツ</span>
+      いきなり完成させようとせず、<strong>「まず案を出して」で一度止める</strong>のがコツです。Claudeが出したタイプや質問を見て、「ここはこう言い換えたい」と伝えながら整えると、あなたらしい診断になります。この“やりとり”をくり返すほど、あなたの世界観がにじむ診断に仕上がります。
+    </div>
+
+    <h3>参考｜こんな診断になります（イメージ例）</h3>
+    <p>ChatGPTがあなたに合わせて作ってくれるので、下は<strong>あくまでイメージ</strong>です。「診断を受けるのは、あなたのお客様（相談者）」——その人が「これ私かも」と思える内容になる、という感覚をつかんでください。</p>
+
+    <h4>イメージ例A｜カウンセラーの相談者向け「心の疲れタイプ診断」</h4>
+    <table class="tbl">
+      <tr><th>タイプ名</th><th>今の状態</th><th>次に整えるとよいこと</th></tr>
+      <tr><td><strong>がんばりすぎタイプ</strong></td><td>人の期待に応えようとして、自分の限界に気づきにくくなっている</td><td>「休んでいい」と、自分に許可を出すことから</td></tr>
+      <tr><td><strong>気づかい消耗タイプ</strong></td><td>まわりの気持ちを察しすぎて、自分の心がすり減っている</td><td>相手と自分の間に、やさしい境界線を引く</td></tr>
+      <tr><td><strong>抱え込みタイプ</strong></td><td>つらさを人に言えず、ひとりで持ちこたえようとしている</td><td>「話す」ことは弱さではなく、回復の入口</td></tr>
+      <tr><td><strong>自分後回しタイプ</strong></td><td>いつも誰かが優先で、自分の望みが後ろに追いやられている</td><td>小さな「私はこうしたい」を、ひとつ拾い直す</td></tr>
+    </table>
+
+    <h4>イメージ例B｜占い師の相談者向け「今の運の流れ診断」</h4>
+    <table class="tbl">
+      <tr><th>タイプ名</th><th>今の状態</th><th>次に整えるとよいこと</th></tr>
+      <tr><td><strong>転換期タイプ</strong></td><td>今までのやり方が合わなくなり、次へ移る流れが来ている</td><td>手放すことを恐れず、新しい風を受け入れる時</td></tr>
+      <tr><td><strong>種まきタイプ</strong></td><td>まだ形にならないけれど、未来につながる準備の時期</td><td>焦らず、今できる小さな一歩を積む</td></tr>
+      <tr><td><strong>巡り待ちタイプ</strong></td><td>動きたいのに流れが止まって見え、もどかしさを感じている</td><td>流れが戻るまで、力を蓄えて整える時</td></tr>
+      <tr><td><strong>実りどきタイプ</strong></td><td>これまでの積み重ねが、そろそろ形になろうとしている</td><td>受け取る準備を整え、手を伸ばす</td></tr>
+    </table>
+
+    <div class="note tip">
+      <span class="label">診断を受けるのは「あなたのお客様」</span>
+      占い師さんなら占ってほしい人、カウンセラーさんなら相談したい人。<strong>その人が受けて「気づき」を得て、「もっと知りたい」とメール登録してくれる</strong>——それがこの診断の役割です。あなた自身を診断するものではありません。
+    </div>
+
+    <h3>できた診断を設置する</h3>
+    <p>Claudeが作ってくれた診断HTMLは、フォームとまったく同じ手順で設置します。</p>
+    <ul class="dot">
+      <li>診断用の記録は、<a href="#step3">STEP3</a>で作るスプレッドシートに<strong>「診断」タブを足して</strong>ためます</li>
+      <li>GAS（自動書き込み）とデプロイのやり方は、<a href="#step3">STEP3の手順</a>とまったく同じです</li>
+      <li>できたHTMLは、<a href="#step1">STEP1</a>のGitHubに置いて公開します</li>
+    </ul>
+    <div class="note">
+      <span class="label">結果のあとは、メールへ</span>
+      診断で受け取ったメールアドレスは、<a href="#step4">STEP4</a>の7日間ステップメールにつながります。診断を受けた人へ、自動で少しずつご案内が届く——これで「追いかけない」流れができあがります。
+    </div>
+  </section>
+
+  <!-- ========== STEP3 ========== -->
+  <section id="step3">
+    <span class="sec-num">05 ── 本編</span>
+    <h2>STEP3　申込フォームを設置する</h2>
+    <p>説明会への<strong>申し込みを受け付けるフォーム</strong>を設置します。入力された内容は、自動でスプレッドシートにたまり、あなたのメールにも届きます。追いかけなくても、申し込みが手元に集まってくる。その部分を作ります。</p>
+
+    <h3>用意するもの</h3>
+    <ul class="dot">
+      <li><strong>申込フォームのファイル</strong>（<code class="inline">form.html</code>）</li>
+      <li><strong>フォーム用のプログラム</strong>（<code class="inline">gas_code.gs</code>）</li>
+      <li><strong>Google スプレッドシート</strong>（申し込みをためる場所）</li>
+    </ul>
+
+    <div class="note tip">
+      <span class="label">スプレッドシートは、1つにまとめるのがおすすめ</span>
+      診断ごと・フォームごとにファイルを分けると、開くものが増えて管理が大変になります。<strong>1つのスプレッドシートの中に「診断」「申込」などのタブ（シート）を分けて作る</strong>と、ぜんぶ1画面で見渡せてラクです。このマニュアルでは、その形で進めます。
+    </div>
+
+    <h3>手順</h3>
+    <div class="steps">
+
+      <div class="step">
+        <h4>受け取り用のスプレッドシートを開く</h4>
+        <p>申し込みをためるスプレッドシートを用意します。すでに診断用のスプレッドシートがあるなら、<strong>それと同じファイルを使ってかまいません</strong>（タブが増えるだけです）。新しく作る場合は、Googleドライブから「新規 → Googleスプレッドシート」で作成します。</p>
+      </div>
+
+      <div class="step">
+        <h4>Apps Script を開く</h4>
+        <p>スプレッドシートの上のメニューから <strong>「拡張機能」→「Apps Script」</strong> を選びます。プログラムを書く画面が開きます。</p>
+      </div>
+
+      <div class="step">
+        <h4>プログラムを貼り付ける</h4>
+        <p>最初から書かれている文字は、<strong>すべて消します</strong>。そこへ、用意した <code class="inline">gas_code.gs</code> の中身を<strong>まるごと貼り付け</strong>ます。</p>
+        <div class="note warn">
+          <span class="label">1か所だけ確認</span>
+          コードの上のほうにある通知メールの宛先が、<strong>自分のメールアドレスになっているか</strong>を確認してください。ここに書いたアドレスへ、申し込みのお知らせが届きます。
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>デプロイする（公開する）</h4>
+        <p>右上の <strong>「デプロイ」→「新しいデプロイ」</strong> を押します。設定を、次のとおりに選びます。</p>
+        <table class="tbl">
+          <tr><th>項目</th><th>選ぶもの</th></tr>
+          <tr><td>種類</td><td><strong>ウェブアプリ</strong></td></tr>
+          <tr><td>実行するユーザー</td><td><strong>自分</strong></td></tr>
+          <tr><td>アクセスできるユーザー</td><td><strong>全員</strong></td></tr>
+        </table>
+        <p>「デプロイ」を押すと、はじめてのときは<strong>アクセスの許可</strong>を求められます。自分のGoogleアカウントを選び、画面にそって許可を進めてください。</p>
+      </div>
+
+      <div class="step">
+        <h4>ウェブアプリのURLをコピーする</h4>
+        <p>デプロイが終わると、<strong>「ウェブアプリのURL」</strong>が表示されます。このURLをコピーします。これが、フォームとスプレッドシートをつなぐ「橋」になります。</p>
+      </div>
+
+      <div class="step">
+        <h4>フォームにURLを貼る</h4>
+        <p><code class="inline">form.html</code> をテキストエディタで開き、上のほうにある次の行を探します。</p>
+        <pre>const GAS_URL = "ここにGASのURLを貼る";</pre>
+        <p>この <code class="inline">ここにGASのURLを貼る</code> の部分を、さっきコピーしたURLに<strong>置き換え</strong>ます。前後の <code class="inline">"</code>（ダブルクォート）は消さないよう注意してください。</p>
+        <pre>const GAS_URL = "https://script.google.com/macros/s/……/exec";</pre>
+      </div>
+
+      <div class="step">
+        <h4>フォームを公開する</h4>
+        <p>URLを貼った <code class="inline">form.html</code> を、GitHub に上げます（STEP1で用意した場所です）。これで、フォームがインターネット上で使えるようになります。</p>
+      </div>
+
+      <div class="step">
+        <h4>テスト送信して確かめる</h4>
+        <p>公開されたフォームを自分で開いて、ためしに1件送ってみます。次の2つを確認してください。</p>
+        <ul class="dot">
+          <li>スプレッドシートの「申込」タブに、入力した内容が<strong>1行追加されている</strong></li>
+          <li>設定したメールアドレスに、<strong>お知らせメールが届いている</strong></li>
+        </ul>
+        <p>両方そろっていれば、申込フォームは完成です。</p>
+      </div>
+
+    </div>
+
+    <div class="note">
+      <span class="label">つまずいたら</span>
+      送っても届かない・スプレッドシートに何も入らない、というときは、巻末の<a href="#trouble">「困ったとき」</a>を見てください。ほとんどは、URLの貼り間違いか、デプロイの設定のどちらかです。
+    </div>
+  </section>
+
+  <!-- ========== STEP4 ========== -->
+  <section id="step4">
+    <span class="sec-num">06 ── 本編</span>
+    <h2>STEP4　7日間ステップメールを組む</h2>
+    <p>診断でメールアドレスを残してくれた人へ、<strong>7日間かけて自動で届くメール</strong>を用意します。1通ずつ、少しずつ信頼が育ち、「もっと知りたい」「一度相談してみようかな」と思ってもらう——これが「追いかけない集客」の心臓部です。</p>
+    <p>メールの配信には <strong>Brevo（ブレボ）</strong> を使います。無料枠でステップメールが組めて、登録者数の制限もなく、日本語で使えます。</p>
+
+    <div class="note tip">
+      <span class="label">メールの“文章”は、もうできています</span>
+      7通の本文は、<a href="#step2">STEP2</a>でChatGPTと一緒に作った内容をそのまま使います。このSTEPでやるのは、その文章を<strong>Brevoに入れて、自動で届くように設定する</strong>ことだけです。
+    </div>
+
+    <h3>ぜんたいの仕組み</h3>
+    <p>作るのは、こういう流れです。</p>
+    <div class="note">
+      <span class="label">つながり</span>
+      診断でメール登録　→　自動で Brevo の「リスト」に入る　→　リストに入った人へ、1日おきに7通のメールが自動で届く。<strong>一度作れば、あとはずっと自動で動きます。</strong>
+    </div>
+
+    <h3>手順</h3>
+    <div class="steps">
+
+      <div class="step">
+        <h4>Brevo に登録する</h4>
+        <p><a href="https://www.brevo.com/ja/">Brevo（ブレボ）</a>のサイトから、無料アカウントを作ります。メールアドレスがあれば始められます。</p>
+      </div>
+
+      <div class="step">
+        <h4>送信者の名前を決める</h4>
+        <p>メールの差出人として表示される名前を設定します。<strong>あなたの名前や活動名</strong>にしておくと、受け取った人が「あの人からだ」とわかって安心します。</p>
+      </div>
+
+      <div class="step">
+        <h4>リスト（登録者を入れる箱）を作る</h4>
+        <p>診断を受けた人を入れるための<strong>「リスト」</strong>を1つ作ります。名前は「診断登録者」など、自分でわかるものでOKです。このリストに人が入ると、メールの配信が始まる仕組みにします。</p>
+      </div>
+
+      <div class="step">
+        <h4>7通のメールを用意する</h4>
+        <p>STEP2でChatGPTと作った7通の本文を、Brevoの<strong>「テンプレート」</strong>として1通ずつ登録します。件名・本文をそれぞれ貼り付けて、保存していきます。</p>
+      </div>
+
+      <div class="step">
+        <h4>オートメーション（自動配信）を組む</h4>
+        <p>Brevoの<strong>「オートメーション」</strong>で、自動で届く流れを作ります。組み方はシンプルで、この繰り返しです。</p>
+        <ul class="dot">
+          <li><strong>きっかけ</strong>：作ったリストに登録されたら、スタート</li>
+          <li><strong>1通目</strong>を送る</li>
+          <li><strong>「1日待つ」</strong>を挟む</li>
+          <li><strong>2通目</strong>を送る　→　また「1日待つ」…</li>
+          <li>これを<strong>7通目まで</strong>繰り返す</li>
+        </ul>
+        <p>できあがったら、忘れずに<strong>オートメーションを「有効（オン）」</strong>にします。ここをオンにしないと、動きません。</p>
+      </div>
+
+      <div class="step">
+        <h4>診断とつなぐ（自動登録の設定）</h4>
+        <p>診断でメールアドレスを入力した人が、<strong>自動でこのリストに入る</strong>ようにします。この“つなぎ”は、診断のGAS（自動書き込みの仕組み）に、Brevoへ登録する処理を足すことで実現します。</p>
+        <div class="note warn">
+          <span class="label">つまずきポイント（大事）</span>
+          この“つなぎ”を動かすには、GASに<strong>「外部のサービスへ接続する許可」</strong>を一度あたえる必要があります。最初だけ、GASのテスト実行で許可を求められるので、画面にそって<strong>許可</strong>してください。ここを通さないと、登録が静かに失敗して「メールが届かない」原因になります。
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>自分でテストする</h4>
+        <p>実際に自分で診断を受けて、メールアドレスを登録してみます。次を確認してください。</p>
+        <ul class="dot">
+          <li>Brevoのリストに、自分が<strong>登録者として入っている</strong></li>
+          <li>しばらくして、<strong>1通目のメールが届く</strong></li>
+        </ul>
+        <p>両方そろえば、7日間ステップメールは完成です。</p>
+      </div>
+
+    </div>
+
+    <div class="note tip">
+      <span class="label">迷惑メール対策のひと工夫</span>
+      最初のうち、メールが「迷惑メール」や「プロモーション」フォルダに入ってしまうことがあります。診断の結果画面に<strong>「メールが届かないときは、迷惑メールフォルダもご確認ください」</strong>という一言を添えておくと、受け取る人が見逃しません。
+    </div>
+
+    <div class="note">
+      <span class="label">メールの中身について</span>
+      「毎日売り込む」のではなく、<strong>共感 → 気づき → 小さな希望 → 信頼</strong>を積み重ねる流れにするのがコツです。この設計は、STEP2のChatGPTプロンプトにすでに組み込まれています。安心してそのまま使ってください。
+    </div>
+  </section>
+
+  <!-- ========== STEP5 ========== -->
+  <section id="step5">
+    <span class="sec-num">07 ── 本編</span>
+    <h2>STEP5　ダッシュボードで数字を見る</h2>
+    <p>診断を受けた人数、メール登録の数、予約の数などを<strong>ひと目で見られる画面</strong>を用意します。数字が見えると、「今週は診断が増えたな」「メール登録につながっているな」と、自分の仕組みの動きが手に取るようにわかります。</p>
+    <p>ダッシュボードは、<strong>完成したファイルをそのままお渡しします。</strong>あなたは、決められた場所を数か所書き換えて、公開するだけ。一から作る必要はありません。</p>
+
+    <div class="note tip">
+      <span class="label">数字は「自動」で出ます</span>
+      診断の回答データを読みに行って、<strong>診断完了数・メール登録数・タイプ別の内訳・予約数まで自動で表示</strong>されます。タイプの名前も、あなたの診断に合わせて自動で出るので、そこは書き換え不要です。
+    </div>
+
+    <h3>書き換えるのは、ここだけ</h3>
+    <p>お渡しするファイル（<code class="inline">dashboard-template.html</code>）を、テキストエディタで開きます。書き換える場所には、すべて<strong>「ここに自分の〇〇を貼る」</strong>と書いてあるので、そこを探して差し替えるだけです。</p>
+
+    <h4>① いちばん大事：GAS_URL（必ず書き換え）</h4>
+    <p>ファイルの下のほうにある、次の行を探します。</p>
+    <pre>const GAS_URL = "ここに自分の診断のGAS_URLを貼る";</pre>
+    <p>この <code class="inline">ここに自分の診断のGAS_URLを貼る</code> を、<strong>あなたの診断のGAS_URL</strong>（STEP2で診断を作ったときの、あの橋渡しのURL）に置き換えます。<strong>ここを変えないと、数字が出ません。</strong>いちばん大事な1か所です。</p>
+    <div class="note warn">
+      <span class="label">同じ診断のURLを使います</span>
+      ここに貼るのは、<strong>診断で使っているのと同じGAS_URL</strong>です。ダッシュボードは、その診断のデータを読みに行くことで数字を表示します。
+    </div>
+
+    <h4>② ショートカットのリンク（変えると便利）</h4>
+    <p>ダッシュボードには、よく使うページへのショートカット（「診断をひらく」「GitHub」「LINE」など）が並んでいます。次の場所を、自分のURLに変えておくと、ワンタップで開けて便利です。</p>
+    <ul class="dot">
+      <li><strong>診断をひらく</strong>　→　<code class="inline">ここに自分の診断ページのURLを貼る</code></li>
+      <li><strong>GitHub</strong>　→　<code class="inline">ここに自分のGitHubのURLを貼る</code></li>
+      <li><strong>LINE</strong>　→　<code class="inline">ここに自分のLINEのURLを貼る（使う人だけ）</code></li>
+    </ul>
+    <div class="note">
+      <span class="label">それ以外のリンクは、そのままでOK</span>
+      スプレッドシート・Brevo・TimeRex・決済などのショートカットは、共通のログインページにつながっているので、<strong>書き換えなくても大丈夫</strong>です。開いて自分のアカウントでログインすれば、自分の画面になります。
+    </div>
+
+    <h3>公開する</h3>
+    <p>書き換えたファイルを、<a href="#step1">STEP1</a>のGitHubに、診断と<strong>同じ場所（同じリポジトリ）</strong>にアップします。診断とダッシュボードは1つのシステムなので、同じ場所にまとめておくのが自然です。</p>
+    <p>アップしたら、そのURLを開いて、数字が出るか確認します。自分でテスト診断を1件受けてから開くと、「診断完了 1」のように、実際の数字が出るはずです。</p>
+
+    <div class="note warn">
+      <span class="label">数字が「—」のままのとき</span>
+      ほとんどの場合、原因は次の2つです。<strong>①GAS_URLの貼り間違い</strong>（もう一度、正しいURLか確認）。<strong>②GASのデプロイが最新でない</strong>（巻末の<a href="#redeploy">デプロイし直す</a>を確認）。少し待ってからページを開き直すと、出ることもあります。
+    </div>
+
+    <div class="note tip">
+      <span class="label">スマホでも見られます</span>
+      パソコン向けの見やすいデザインですが、スマホのブラウザでも開けます。「パソコンでじっくり、スマホでサッと確認」という使い方ができます。人に説明するとき、この画面を見せて「診断を受けると、ここに自動で出るんです」と言える——それが、あなたの仕組みが動いている証拠になります。
+    </div>
+  </section>
+
+  <!-- ========== STEP6 ========== -->
+  <section id="step6">
+    <span class="sec-num">08 ── 本編</span>
+    <h2>STEP6　全部つなげて公開する</h2>
+    <p>ここまで作った部品を<strong>ひとつの流れにつなげて</strong>、実際に動くか確認します。LPから診断へ、診断からメールへ、メールから予約へ。<strong>お客さんになったつもりで、最初から最後まで自分で通してみる</strong>のが、いちばん確実な確認方法です。</p>
+
+    <h3>お客さんの通り道をたどる</h3>
+    <p>実際に、次の順番で自分で操作してみます。途切れず最後まで進めれば、仕組みは完成です。</p>
+
+    <div class="steps">
+      <div class="step">
+        <h4>LP を開く</h4>
+        <p>公開したLPを開きます。文章や画像がきちんと表示されているか、スマホでもPCでも見てみます。</p>
+      </div>
+      <div class="step">
+        <h4>ボタンから次へ進めるか</h4>
+        <p>LPの「診断を受ける」や「申し込む」ボタンを押して、<strong>ちゃんと次のページ（診断・フォーム）へ移動するか</strong>を確認します。ここが切れていると、せっかく興味を持った人が先に進めません。</p>
+      </div>
+      <div class="step">
+        <h4>診断 → メール登録が動くか</h4>
+        <p>診断を受けて、メールアドレスを登録してみます。<strong>登録後、ステップメールの1通目が届くか</strong>を確認します（届くまで少し時間がかかることがあります）。</p>
+      </div>
+      <div class="step">
+        <h4>フォーム → スプレッドシート・メールが動くか</h4>
+        <p>申込フォームを1件送ってみて、<strong>スプレッドシートに記録され、自分のメールに通知が届くか</strong>を確認します（STEP3のテストと同じです）。</p>
+      </div>
+      <div class="step">
+        <h4>予約ページが開くか</h4>
+        <p>個別相談の予約ボタンから、<strong>TimeRexの予約画面がちゃんと開くか</strong>を確認します。実際に空き枠が表示されていればOKです。</p>
+      </div>
+    </div>
+
+    <h3>公開前の最終チェックリスト</h3>
+    <p>下のすべてにチェックが付いたら、安心して公開できます。</p>
+    <ul class="check">
+      <li>LP・診断・フォームが、スマホでもPCでも崩れずに表示される</li>
+      <li>すべてのボタンが、正しい次のページへつながっている</li>
+      <li>診断のあと、ステップメールが届く</li>
+      <li>フォーム送信で、スプレッドシートとメールの両方に届く</li>
+      <li>予約ページが開き、空き枠が表示される</li>
+      <li>リンク切れ（押しても何も起きないボタン）がない</li>
+    </ul>
+
+    <div class="note tip">
+      <span class="label">これで、仕組みは動いています</span>
+      おつかれさまでした。ここまでで、「必要な人が、自分から来てくれる」仕組みが完成です。あとは実際に届けていくだけ。もっと売りたい・自動化したいと思ったら、この先の「希望者のみ」の章へ進んでください。
+    </div>
+  </section>
+
+  <!-- ===== PART: 希望者のみ divider ===== -->
+  <div class="divider">
+    <span class="eyebrow">Part 2</span>
+    <h2>希望者のみ</h2>
+    <p>有料商品を売りたくなったとき、作業を自動化したくなったときに読む章です。<br>本編の仕組みだけでも、説明会は問題なく動きます。</p>
+  </div>
+
+  <!-- ========== 9. 決済 ========== -->
+  <section id="pay">
+    <span class="sec-num">09 ── 希望者のみ</span>
+    <h2>決済を用意する<span class="optional-badge">希望者のみ</span></h2>
+    <p>有料の商品やサービスを売るときに、<strong>代金を受け取る仕組み</strong>を用意します。無料説明会だけの段階では、まだ必要ありません。</p>
+    <div class="note">
+      <span class="label">この章の内容は準備中です</span>
+      Square / Stripe / PayPal の選び方と、銀行振込の運用方法を書き込みます。
+    </div>
+  </section>
+
+  <!-- ========== 10. Zapier ========== -->
+  <section id="zapier">
+    <span class="sec-num">10 ── 希望者のみ</span>
+    <h2>Zapier で自動連携する<span class="optional-badge">希望者のみ</span></h2>
+    <p>予約や決済の情報を、<strong>手作業なしで自動的につなげる</strong>仕組みです。数が増えてきて、手で管理するのが大変になったら使います。</p>
+    <div class="note">
+      <span class="label">この章の内容は準備中です</span>
+      TimeRex・決済とダッシュボードをつなぐ設定（ダッシュボードVer.2）を書き込みます。
+    </div>
+  </section>
+
+  <!-- ========== 11. Analytics ========== -->
+  <section id="analytics">
+    <span class="sec-num">11 ── 希望者のみ</span>
+    <h2>アクセス解析を入れる<span class="optional-badge">希望者のみ</span></h2>
+    <p>サイトに<strong>何人が来て、どのページを見たか</strong>を調べられるようにします。数字が見えると改善しやすくなりますが、なくても仕組みは動きます。</p>
+    <div class="note">
+      <span class="label">この章の内容は準備中です</span>
+      Google Analytics の登録と、ページへの設置方法を書き込みます。
+    </div>
+  </section>
+
+  <!-- ========== 12. TROUBLE ========== -->
+  <section id="trouble">
+    <span class="sec-num">12 ── 巻末</span>
+    <h2>困ったとき</h2>
+    <p>つまずきやすいところと、その直し方をまとめます。あわてなくて大丈夫。<strong>ほとんどのトラブルは、原因が決まっています。</strong>上から順に確認してみてください。</p>
+
+    <h3>フォームを送っても、届かない</h3>
+    <p>いちばん多いトラブルです。次の順で確認します。</p>
+    <ol class="num">
+      <li><strong>URLの貼り間違い</strong>。<code class="inline">form.html</code> の <code class="inline">GAS_URL</code> に貼ったURLが、正しいか確認します。前後の <code class="inline">"</code> が消えていないか、URLの途中で切れていないかも見てください。</li>
+      <li><strong>デプロイの設定</strong>。GASのデプロイで「アクセスできるユーザー」が <strong>「全員」</strong> になっているか確認します。ここが「自分のみ」だと、他の人からの送信が届きません。</li>
+      <li><strong>コードを直したのに反映されない</strong>。GASのコードを直したときは、<strong>もう一度デプロイし直す</strong>必要があります（後述）。</li>
+    </ol>
+
+    <h3>診断結果が出ない／ページが真っ白</h3>
+    <ol class="num">
+      <li><strong>公開直後は、少し待つ</strong>。GitHubにファイルを上げた直後は、反映まで数分かかります。1〜2分待ってから開き直してください。</li>
+      <li><strong>ファイル名を確認</strong>。トップに出したいファイルが <code class="inline">index.html</code> になっているか確認します。</li>
+      <li><strong>スマホのダークモード</strong>。画面が暗く見えるだけなら、表示の問題です。別のブラウザや、PCで開くと正しい色で見えることがあります。</li>
+    </ol>
+
+    <h3 id="redeploy">GASのコードを直したら、必ずデプロイし直す</h3>
+    <p>GASのプログラムを書き換えたとき、<strong>保存しただけでは反映されません。</strong>次の手順で、デプロイを更新します。</p>
+    <ol class="num">
+      <li>右上の <strong>「デプロイ」→「デプロイを管理」</strong> を開く</li>
+      <li>今のデプロイの<strong>鉛筆マーク（編集）</strong>を押す</li>
+      <li>「バージョン」を <strong>「新バージョン」</strong> に変える</li>
+      <li><strong>「デプロイ」</strong>を押す</li>
+    </ol>
+    <div class="note tip">
+      <span class="label">URLは変わりません</span>
+      この方法で更新すれば、<strong>ウェブアプリのURLは同じまま</strong>です。フォーム側のURLを貼り替える必要はありません。
+    </div>
+
+    <h3>ある日とつぜん、フォームが届かなくなった</h3>
+    <p>今まで動いていたのに、急に届かなくなることがあります。<strong>あなたのミスではありません。</strong>Googleの都合で、GASの認証（アクセス許可）が切れることが、年に1〜2回あります。</p>
+    <p>その場合は、上の<a href="#redeploy">「デプロイし直す」</a>をもう一度行い、途中で<strong>アクセスの許可を求められたら、あらためて許可</strong>してください。これで元に戻ることがほとんどです。</p>
+
+    <h3>ステップメールが届かない</h3>
+    <ol class="num">
+      <li><strong>迷惑メールフォルダ</strong>を確認します。最初の数通は、迷惑メールに入りやすいです。</li>
+      <li><strong>Brevoの配信設定</strong>が「有効（オン）」になっているか確認します。</li>
+      <li><strong>登録が正しく届いているか</strong>。Brevoのリストに、テスト登録したアドレスが入っているか確認します。</li>
+    </ol>
+
+    <div class="note">
+      <span class="label">それでも解決しないとき</span>
+      あわてず、「どのSTEPの、どの操作で、何が起きたか」をメモしてください。その状態を伝えられれば、原因はほぼ特定できます。ひとつずつ確認していけば、必ず動きます。
+    </div>
+  </section>
+
+  <footer>
+    <div class="sig">yuwa Bloom Realm</div>
+    <div class="copy">追いかけない集客 構築マニュアル</div>
+  </footer>
+
+</div>
+
+<script>
+  /* ▼▼▼ ダウンロード配布先の設定 ▼▼▼
+     配布ファイルを置いたGitHubのURLに書き換えてください。
+     末尾のスラッシュ(/)まで含めて、その後にファイル名が付きます。
+     例: "https://ユーザー名.github.io/downloads/"                    */
+  const DOWNLOAD_BASE = "ここに配布ファイルを置いたフォルダのURLを貼る（末尾は / ）";
+  /* ▲▲▲ */
+
+  (function setupDownloads(){
+    const map = {
+      'dl-form': 'form.html',
+      'dl-gas' : 'gas_code.gs',
+      'dl-dash': 'dashboard-template.html'
+    };
+    const ready = DOWNLOAD_BASE.startsWith('http');
+    Object.keys(map).forEach(function(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(ready){
+        el.href = DOWNLOAD_BASE + map[id];
+      }else{
+        // URL未設定のあいだは押せないように
+        el.classList.add('disabled');
+        const go = el.querySelector('.dl-go');
+        if(go) go.textContent = '準備中';
+      }
+    });
+  })();
+
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.getElementById(btn.getAttribute('data-copy'));
+      if(!target) return;
+      var text = target.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var orig = btn.textContent;
+        btn.textContent = 'コピーしました';
+        btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = orig; btn.classList.remove('done'); }, 2000);
+      }).catch(function(){
+        // フォールバック：手動選択
+        var range = document.createRange();
+        range.selectNodeContents(target);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
