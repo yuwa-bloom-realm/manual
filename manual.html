@@ -196,16 +196,17 @@
       <li><a href="#step3">STEP3　申込フォームを設置する</a></li>
       <li><a href="#step4">STEP4　7日間ステップメールを組む</a></li>
       <li><a href="#step5">STEP5　ダッシュボードで数字を見る</a></li>
-      <li><a href="#step6">STEP6　全部つなげて公開する</a></li>
+      <li><a href="#step6">STEP6　予約と Zoom をつなぐ</a></li>
+      <li><a href="#step7">STEP7　全部つなげて公開する</a></li>
     </ol>
     <div class="part">希望者のみ｜有料商品を売る・自動化する</div>
-    <ol start="9">
+    <ol start="10">
       <li><a href="#pay">決済を用意する</a></li>
       <li><a href="#zapier">Zapier で自動連携する</a></li>
       <li><a href="#analytics">アクセス解析を入れる</a></li>
     </ol>
     <div class="part">巻末</div>
-    <ol start="12">
+    <ol start="13">
       <li><a href="#trouble">困ったとき</a></li>
     </ol>
   </nav>
@@ -980,10 +981,69 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
     </div>
   </section>
 
-  <!-- ========== STEP6 ========== -->
+  <!-- ========== STEP6　予約とZoom ========== -->
   <section id="step6">
     <span class="sec-num">08 ── 本編</span>
-    <h2>STEP6　全部つなげて公開する</h2>
+    <h2>STEP6　予約と Zoom をつなぐ</h2>
+    <p>個別相談の予約が入ったら、<strong>自動で Zoom の URL が発行されて、相手にもあなたにも届く</strong>——ここまでを、手作業ゼロで動くようにします。予約のたびに「URLを発行してメールで送る」をやらなくて済むので、いちばん手間が減るところです。</p>
+
+    <div class="note">
+      <span class="label">つなぐもの</span>
+      <strong>TimeRex</strong>（予約を受け付ける）と <strong>Zoom</strong>（オンラインで話す）の2つ。あいだに <strong>カレンダー</strong>（Google など）も入れておくと、空き枠が自動で正しく出ます。
+    </div>
+
+    <h3>用意するもの</h3>
+    <ul class="dot">
+      <li>TimeRex のアカウント（無料枠でOK）</li>
+      <li>Zoom のアカウント（無料枠でOK）</li>
+      <li>Google カレンダーなど、ふだん使っているカレンダー</li>
+    </ul>
+
+    <h3>手順</h3>
+    <div class="steps">
+      <div class="step">
+        <h4>カレンダーをつなぐ</h4>
+        <p>TimeRex にログインし、案内にそって、ふだん使っているカレンダー（Google など）を連携します。ここで<strong>予約に使いたいカレンダーを間違えないように</strong>選んでください。別のカレンダーを選ぶと、空き枠がうまく出ません。</p>
+      </div>
+      <div class="step">
+        <h4>Zoom をつなぐ（アカウント全体の設定）</h4>
+        <p><strong>ダッシュボード → アカウント設定 → サービス連携</strong> を開きます。一覧から <strong>「Zoom」</strong> を選んで <strong>「連携する」</strong> を押します。Zoom のログイン画面が出たらログインし、許可（承認）してください。これで「TimeRex 全体で Zoom が使える状態」になります。</p>
+      </div>
+      <div class="step">
+        <h4>予約カレンダーごとに「Zoomを使う」に切り替える</h4>
+        <p><strong>ここが抜けやすい、いちばん大事なところです。</strong>手順2はアカウント全体の設定なので、これだけでは各予約ページには反映されません。個別相談用の<strong>日程調整カレンダーの編集</strong>を開き、<strong>「Zoom会議設定」を「利用する」</strong>に変えて、<strong>「保存する」</strong>を押します。</p>
+      </div>
+      <div class="step">
+        <h4>テスト予約して確認する</h4>
+        <p>自分で1件、テストの予約を入れてみます。<strong>予約完了メールに Zoom の URL（<code class="inline">zoom.us/j/…</code>）が入っていれば成功</strong>です。あなたのカレンダーにも、その Zoom 情報つきの予定が入ります。</p>
+      </div>
+    </div>
+
+    <div class="note warn">
+      <span class="label">「連携したのに URL が出ない」とき</span>
+      いちばん多いのは、<strong>手順3のカレンダー側の切り替えが済んでいない</strong>ケースです。順番に確認してください。<br>
+      ① 予約カレンダーの編集で「Web会議設定」が <strong>「Zoom」</strong> になっているか。なっていても、変更なしで一度 <strong>「保存する」</strong> を押し直す（これだけで直ることが多いです）。<br>
+      ② それでも出ないときは、手順2の <strong>Zoom をいったん解除して、つなぎ直す</strong>（再連携）。つなぎ直したら、もう一度 ① の保存もしておきます。
+    </div>
+
+    <div class="note tip">
+      <span class="label">できたら、予約ページのURLを貼る</span>
+      予約ページ（TimeRex）の URL を、<strong>ステップメールの最後</strong>と<strong>診断結果ページの「個別相談へ」ボタン</strong>に貼れば、流れが最後までつながります。この確認は次の STEP7 で行います。
+    </div>
+
+    <h3>この STEP のチェックリスト</h3>
+    <ul class="check">
+      <li>カレンダーを連携した（予約に使うカレンダーを選んだ）</li>
+      <li>アカウント設定 → サービス連携 で Zoom を「連携する」した</li>
+      <li>予約カレンダーの編集で「Zoom会議設定」を「利用する」にして保存した</li>
+      <li>テスト予約の完了メールに Zoom の URL が入っていた</li>
+    </ul>
+  </section>
+
+  <!-- ========== STEP7　全部つなげて公開する ========== -->
+  <section id="step7">
+    <span class="sec-num">09 ── 本編</span>
+    <h2>STEP7　全部つなげて公開する</h2>
     <p>ここまで作った部品を<strong>ひとつの流れにつなげて</strong>、実際に動くか確認します。LPから診断へ、診断からメールへ、メールから予約へ。<strong>お客さんになったつもりで、最初から最後まで自分で通してみる</strong>のが、いちばん確実な確認方法です。</p>
 
     <h3>お客さんの通り道をたどる</h3>
@@ -1007,8 +1067,8 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
         <p>申込フォームを1件送ってみて、<strong>スプレッドシートに記録され、自分のメールに通知が届くか</strong>を確認します（STEP3のテストと同じです）。</p>
       </div>
       <div class="step">
-        <h4>予約ページが開くか</h4>
-        <p>個別相談の予約ボタンから、<strong>TimeRexの予約画面がちゃんと開くか</strong>を確認します。実際に空き枠が表示されていればOKです。</p>
+        <h4>予約 → Zoom URL まで届くか</h4>
+        <p>個別相談の予約ボタンから、<strong>TimeRexの予約画面がちゃんと開くか</strong>を確認します。空き枠が表示されたら、1件テスト予約して、<strong>完了メールに Zoom の URL が入っているか</strong>まで見ておくと安心です（設定は STEP6 で済ませています）。</p>
       </div>
     </div>
 
@@ -1020,6 +1080,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
       <li>診断のあと、ステップメールが届く</li>
       <li>フォーム送信で、スプレッドシートとメールの両方に届く</li>
       <li>予約ページが開き、空き枠が表示される</li>
+      <li>テスト予約の完了メールに、Zoom の URL が入っている</li>
       <li>リンク切れ（押しても何も起きないボタン）がない</li>
     </ul>
 
@@ -1038,7 +1099,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
 
   <!-- ========== 9. 決済 ========== -->
   <section id="pay">
-    <span class="sec-num">09 ── 希望者のみ</span>
+    <span class="sec-num">10 ── 希望者のみ</span>
     <h2>決済を用意する<span class="optional-badge">希望者のみ</span></h2>
     <p>有料の商品やサービスを売るときに、<strong>代金を受け取る仕組み</strong>を用意します。無料説明会だけの段階では、まだ必要ありません。</p>
     <div class="note">
@@ -1049,7 +1110,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
 
   <!-- ========== 10. Zapier ========== -->
   <section id="zapier">
-    <span class="sec-num">10 ── 希望者のみ</span>
+    <span class="sec-num">11 ── 希望者のみ</span>
     <h2>Zapier で自動連携する<span class="optional-badge">希望者のみ</span></h2>
     <p>予約や決済の情報を、<strong>手作業なしで自動的につなげる</strong>仕組みです。数が増えてきて、手で管理するのが大変になったら使います。</p>
     <div class="note">
@@ -1060,7 +1121,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
 
   <!-- ========== 11. Analytics ========== -->
   <section id="analytics">
-    <span class="sec-num">11 ── 希望者のみ</span>
+    <span class="sec-num">12 ── 希望者のみ</span>
     <h2>アクセス解析を入れる<span class="optional-badge">希望者のみ</span></h2>
     <p>サイトに<strong>何人が来て、どのページを見たか</strong>を調べられるようにします。数字が見えると改善しやすくなりますが、なくても仕組みは動きます。</p>
     <div class="note">
@@ -1071,7 +1132,7 @@ Web診断やGoogleスプレッドシートなどへ実装できるように、�
 
   <!-- ========== 12. TROUBLE ========== -->
   <section id="trouble">
-    <span class="sec-num">12 ── 巻末</span>
+    <span class="sec-num">13 ── 巻末</span>
     <h2>困ったとき</h2>
     <p>つまずきやすいところと、その直し方をまとめます。あわてなくて大丈夫。<strong>ほとんどのトラブルは、原因が決まっています。</strong>上から順に確認してみてください。</p>
 
